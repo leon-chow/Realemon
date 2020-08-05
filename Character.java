@@ -17,12 +17,14 @@ class Character {
         this.magicDefence = 0;
     }
 
-    public void attack() {
-        
-    }
-
-    public void defend() {
-
+    public Character(String job, int HP, int MP, int attack, int defence, int magicAttack, int magicDefence) {
+        this.job = job;
+        this.HP = HP;
+        this.MP = MP;
+        this.attack = attack;
+        this.defence = defence;
+        this.magicAttack = magicAttack;
+        this.magicDefence = magicDefence;
     }
 
     public void jobChange() {
@@ -31,9 +33,5 @@ class Character {
 
     public Character createCharacter() {
 
-    }
-
-    public void heal() {
-        
     }
 }
