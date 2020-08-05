@@ -1,4 +1,5 @@
 class Character {
+    public String name;
     public String job;    
     public int HP;
     public int MP;
@@ -8,6 +9,7 @@ class Character {
     public int magicAttack;
 
     public Character() {
+        this.name = '';
         this.job = '';
         this.HP = 50;
         this.MP = 25;
@@ -18,6 +20,7 @@ class Character {
     }
 
     public Character(String job, int HP, int MP, int attack, int defence, int magicAttack, int magicDefence) {
+        this.name = name;
         this.job = job;
         this.HP = HP;
         this.MP = MP;
@@ -27,11 +30,13 @@ class Character {
         this.magicDefence = magicDefence;
     }
 
-    public void jobChange() {
-
+    public void jobChange(String oldJob, String newJob) {
+        System.out.println("Congratulations, you successfully changed from " + oldJob + " to " + newJob);
     }
 
-    public Character createCharacter() {
+    public void createCharacter(String name, String job) {
+        System.out.println("You have successfully created " + name + " with a job of " + job);
 
+        //TODO: File write to save jobs
     }
 }
