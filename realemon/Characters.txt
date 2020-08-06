@@ -1,0 +1,3 @@
+Name    Job     HP       MP      ATK     DEF     M. ATK  M. DEF
+Leon	1	50 	 25 	 5 	 5 	 5 	 5 
+Bob	8	50 	 25 	 5 	 5 	 5 	 5 

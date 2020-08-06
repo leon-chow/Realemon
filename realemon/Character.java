@@ -35,10 +35,4 @@ class Character {
     public void jobChange(String oldJob, String newJob) {
         System.out.println("Congratulations, you successfully changed from " + oldJob + " to " + newJob);
     }
-
-    public void createCharacter(String name, String job) {
-        System.out.println("You have successfully created " + name + " with a job of " + job);
-
-        //TODO: File write to save jobs
-    }
 }
