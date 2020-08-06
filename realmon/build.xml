@@ -10,7 +10,7 @@
     </target>
 
     <target name="run">
-        <java classname="realemon/Main" fork="true"/>
+        <java classname="realmon/Main" fork="true"/>
     </target>
 
 </project>

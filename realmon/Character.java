@@ -1,4 +1,4 @@
-package realemon;
+package realmon;
 
 class Character {
     public String name;
