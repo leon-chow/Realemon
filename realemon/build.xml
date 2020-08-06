@@ -1,0 +1,16 @@
+<project basedir=".">
+    <target name="clean">
+        <delete file="Main.class"/>
+        <delete file="Character.class"/>
+        <delete file="Combat.class"/>
+    </target>
+
+    <target name="compile">
+        <javac srcdir="." includeantruntime="true" destdir="."/>
+    </target>
+
+    <target name="run">
+        <java classname="realemon/Main" fork="true"/>
+    </target>
+
+</project>

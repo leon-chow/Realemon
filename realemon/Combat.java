@@ -1,4 +1,6 @@
-class Combat() {
+package realemon;
+
+class Combat {
     public void heal() {
         
     }

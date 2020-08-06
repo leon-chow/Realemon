@@ -1,3 +1,5 @@
+package realemon;
+
 class Character {
     public String name;
     public String job;    
@@ -9,8 +11,8 @@ class Character {
     public int magicAttack;
 
     public Character() {
-        this.name = '';
-        this.job = '';
+        this.name = "";
+        this.job = "";
         this.HP = 50;
         this.MP = 25;
         this.attack = 0;
@@ -19,7 +21,7 @@ class Character {
         this.magicDefence = 0;
     }
 
-    public Character(String job, int HP, int MP, int attack, int defence, int magicAttack, int magicDefence) {
+    public Character(String name, String job, int HP, int MP, int attack, int defence, int magicAttack, int magicDefence) {
         this.name = name;
         this.job = job;
         this.HP = HP;
