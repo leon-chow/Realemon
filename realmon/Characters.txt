@@ -4,4 +4,10 @@ Doo			002	35	20	7	6	3	3	0	PRO
 Leon			005	40	20	4	6	2	2	0	PRO
 Bob			001	70	5	10	5	1	1	0 	PRO
 New Guy			001	70	5	10	5	1	1	0	PRO
-Dsadasdsadasdsadas	002	35	20	7	6	3	3	0	PROBob	 	 	002	35	20	7	6	3	3	0	PROBob	 	 	005	40	20	4	6	2	2	0	PROb	 	 	002	35	20	7	6	3	3	0	PROBob	 	 	002	35	20	7	6	3	3	0	PRO
+Dsadasdsadasdsadas	002	35	20	7	6	3	3	0	PRO
+Bob	 	 	002	35	20	7	6	3	3	0	PRO
+Bob	 	 	005	40	20	4	6	2	2	0	PRO
+b	 	 	002	35	20	7	6	3	3	0	PRO
+Bob	 	 	002	35	20	7	6	3	3	0	PRO
+Leon	 	 	001	70	5	10	5	1	1	0	PRO
+S	 	 	005	40	20	4	6	2	2	0	PRO

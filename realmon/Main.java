@@ -70,7 +70,8 @@ public class Main {
                     System.out.println("An error occurred.");
                     e.printStackTrace();
                 }
-                break;
+            Story story = new Story();
+            story.readStory("PRO");
             // deleting character data
             /*} else if (Integer.parseInt(choice.trim()) == 3) {
                 // TODO: print the characters.txt file and take deleted file user input
