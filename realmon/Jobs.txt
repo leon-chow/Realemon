@@ -1,0 +1,10 @@
+Job ID   	|	Job 		|	Job Description
+------------------------------------------------------------------------------------------------------------
+1		|	Farmer 		|	Works on a ranch, grows crops and takes care of animals
+2		|	Taxi Driver 	|	Drives a taxi, quick and speedy
+3		|	Cashier		|	Operates a cash register, deals with annoying people
+4		|	Fast Food Cook 	|	Cooks fast food, an aspiring frycook
+5		|	Server 		|	Delivers food to tables, quick with hands
+6		|	Babysitter  	|	Takes care of young people, good with children
+7		|	Janitor		|	Cleans and sanitzes buildings, works hard to prevent corona
+8		|	Student		|	Studies hard for school in a pinch, procrastinates a lot

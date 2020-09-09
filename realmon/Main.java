@@ -4,47 +4,78 @@ import java.util.*;
 import java.io.File;  // Import the File class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.FileWriter;   // Import the FileWriter class
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Welcome to Real-e-mon! Please type in a number for one " + 
-        "of the following options! \n 1. Load a character. \n 2. Create a new character." +
-        "\n 3. Delete a character. \n 4. Exit");
+        // Main menu options
+        System.out.println("Welcome to Realmon! Please type in a number for one " + 
+        "of the following options! \n 1. New Game \n 2. Load Game" +
+        "\n 3. Exit");
         
         Scanner menuScanner = new Scanner(System.in);  // Create a Scanner object
 
         String choice = menuScanner.nextLine();  // Read user input
         while (true) {
+            // loading a character r
             if (Integer.parseInt(choice.trim()) == 1) {
-                System.out.println("Choose a character to load.");
-            } else if (Integer.parseInt(choice.trim()) == 2) {
-                System.out.println("Please enter your name");
-                String name = menuScanner.nextLine();
-                System.out.println("Please enter the number for your starting job \n " + 
-                "1. Farmer \n 2. Taxi Driver \n 3. Cashier \n 4. Burger Flipper \n 5. Server \n " +
-                "6. Babysitter \n 7. Janitor \n 8. Ticketer");
-                String job = menuScanner.nextLine();
-                while (true) {
-                    if (Integer.parseInt(job.trim()) < 1 && Integer.parseInt(job.trim()) > 8) {
-                        System.out.println("Error: Invalid number!");
-                    } else {
-                        break;
-                    }
+                Scanner newGameScanner = new Scanner(System.in);
+                System.out.println("Please enter your name (No more than 10 characters)");
+                String name = newGameScanner.nextLine();
+                if (name.length() > 10) {
+                    System.out.println("Name is too large! Try again!");
+                    break;
                 }
+                System.out.println("Please enter the number for your starting job. \n Starting jobs: \n");
+                
+                // reading the jobs text file here and displaying it to the user
                 try {
+                    File startingJobs = new File("Jobs.txt");
+                    Scanner jobsReader = new Scanner(startingJobs);
+                    while (jobsReader.hasNextLine()) {
+                      String data = jobsReader.nextLine();
+                      System.out.println(data);
+                    }
+                    jobsReader.close();
+                } catch (IOException e) {
+                    System.out.println("An error has occured");
+                }
+                
+                // get the user input for the job they pick
+                String job = newGameScanner.nextLine();
+
+                try {
+                    // writing to the characters txt file
                     File charactersFile = new File("Characters.txt");
                     charactersFile.createNewFile();
-                    FileWriter myWriter = new FileWriter("Characters.txt", true);
-                    myWriter.write(name + "\t" + job + "\t" + "50 \t 25 \t 5 \t 5 \t 5 \t 5 \n");
-                    myWriter.close();
+                    
+                    File stats = new File("Job Stats.txt");
+                    Scanner statsReader = new Scanner(stats);
+
+                    while(statsReader.hasNextLine()) {
+                        try {
+                            String jobStats = statsReader.nextLine();
+                            if(jobStats.contains("00" + job)) {
+                                FileWriter characterWriter = new FileWriter("Characters.txt", true);
+                                characterWriter.write(name + "\t \t \t"  + jobStats + "\t0\tPRO");
+                                characterWriter.close();
+                            }
+                        } catch (IOException e) {
+                            System.out.println("Job not found!");
+                            System.exit(1);
+                        }
+                    }
+                    
                 } catch (IOException e) {
                     System.out.println("An error occurred.");
                     e.printStackTrace();
                 }
                 break;
+            // deleting character data
+            /*} else if (Integer.parseInt(choice.trim()) == 3) {
+                // TODO: print the characters.txt file and take deleted file user input
+                System.out.println("Choose a character to delete.");*/
             } else if (Integer.parseInt(choice.trim()) == 3) {
-                System.out.println("Choose a character to delete.");
-            } else if (Integer.parseInt(choice.trim()) == 4) {
                 System.out.println("Goodbye...");
                 System.exit(1);
             } 
