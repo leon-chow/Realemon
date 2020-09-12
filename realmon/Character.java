@@ -2,7 +2,7 @@ package realmon;
 
 class Character {
     public String name;
-    public String job;    
+    public String jobID;    
     public int HP;
     public int MP;
     public int attack;
@@ -12,7 +12,7 @@ class Character {
 
     public Character() {
         this.name = "";
-        this.job = "";
+        this.jobID = "";
         this.HP = 50;
         this.MP = 25;
         this.attack = 0;
@@ -23,7 +23,7 @@ class Character {
 
     public Character(String name, String job, int HP, int MP, int attack, int defence, int magicAttack, int magicDefence) {
         this.name = name;
-        this.job = job;
+        this.jobID = job;
         this.HP = HP;
         this.MP = MP;
         this.attack = attack;

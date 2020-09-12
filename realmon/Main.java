@@ -18,7 +18,8 @@ public class Main {
 
         while (true) {
             String choice = menuScanner.nextLine();  
-            // Create a new file
+            
+            // ***Option 1 - NEW GAME***    
             if (Integer.parseInt(choice.trim()) == 1) {
                 Scanner newGameScanner = new Scanner(System.in);
                 System.out.println("Please enter your name (No more than 10 characters)");
@@ -29,7 +30,6 @@ public class Main {
                     break;
                 }
 
-                // close scanner
                 System.out.println("Please enter the number for your starting job. \n Starting jobs: \n");
                 
                 // reading the jobs text file here and displaying it to the user
@@ -73,19 +73,33 @@ public class Main {
                     System.out.println("An error occurred.");
                     e.printStackTrace();
                 }
+            // initializing new objects
             Story story = new Story();
-            story.readStory("PRO");
-            // deleting character data
+            Combat combat = new Combat();
+
+            //String currentAct = story.getActName();
+            while (story.getActName() != "END") {
+                Character player = new Character();
+                Character enemy = new Character();
+                combat.initiateCombat(story.getActName());
+                combat.setPlayer(name);
+                combat.setEnemy(story.getActName());
+                combat.startCombat();
+            }
+
+            // ***Option 3 - DELETE A GAME***   
             /*} else if (Integer.parseInt(choice.trim()) == 3) {
                 // TODO: print the characters.txt file and take deleted file user input
-                System.out.println("Choose a character to delete.");*/
+                System.out.println("Choose a file to delete.");*/
+            // ***OPTION 4 - EXIT***
             } else if (Integer.parseInt(choice.trim()) == 3) {
-                System.out.println("Goodbye...");
+                System.out.println("Thank you for playing!");
                 System.exit(1);
             } else {
                 System.out.println("Error: Invalid number!");
+                // repeat main menu if the user enters an invalid number
+                System.out.println("Back to main menu: \n1. New Game\n2. Load Game\n3. Quit");
             }
-            System.out.println("Back to main menu: \n1. New Game\n2. Load Game\n3. Quit");
             // TODO: Add Try and Catch block after
         }
     }
