@@ -60,7 +60,7 @@ public class Main {
                             String jobStats = statsReader.nextLine();
                             if(jobStats.contains("00" + job)) {
                                 FileWriter characterWriter = new FileWriter("Saves/" + name + ".txt", false);
-                                characterWriter.write(name + "\t \t \t" + jobStats + "\t0\tPRO");
+                                characterWriter.write(jobStats + ",0,PRO");
                                 characterWriter.close();
                             }
                         } catch (IOException e) {
@@ -77,14 +77,36 @@ public class Main {
             Story story = new Story();
             Combat combat = new Combat();
 
-            //String currentAct = story.getActName();
+            // Running fight scripts
             while (story.getActName() != "END") {
-                Character player = new Character();
-                Character enemy = new Character();
-                combat.initiateCombat(story.getActName());
-                combat.setPlayer(name);
-                combat.setEnemy(story.getActName());
-                combat.startCombat();
+                try {
+                    // player save file and stats
+                    File saveFile = new File("Saves/" + name + ".txt");
+                    Scanner pScanner = new Scanner(saveFile);
+                    String[] pStats = pScanner.nextLine().split(",");
+
+                    // enemy save file and stats
+                    File enemyFile = new File("Enemies/" + story.getActName() + ".txt");
+                    Scanner eScanner = new Scanner(enemyFile);
+                    String[] eStats = eScanner.nextLine().split(",");
+
+                    System.out.println("Player: " + Arrays.toString(pStats));
+                    System.out.println("Enemy: " + Arrays.toString(eStats));
+
+                    // creating 2 character objects, 1 player and 1 enemy for combat
+                    Character player = new Character();
+                    Character enemy = new Character();
+
+                    // combat start
+                    combat.initiateCombat(story.getActName());
+                    combat.setPlayer(name);
+                    combat.setEnemy(story.getActName());
+                    combat.startCombat();
+                } catch (IOException e) {
+                    System.out.println("File not found!");
+                    e.printStackTrace();
+                    System.exit(1);
+                }
             }
 
             // ***Option 3 - DELETE A GAME***   

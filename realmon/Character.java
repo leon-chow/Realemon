@@ -9,6 +9,7 @@ class Character {
     public int defence;
     public int magicDefence;
     public int magicAttack;
+    public int exp;
 
     public Character() {
         this.name = "";
@@ -19,9 +20,10 @@ class Character {
         this.defence = 0;
         this.magicAttack = 0;
         this.magicDefence = 0;
+        this.exp = 0;
     }
 
-    public Character(String name, String job, int HP, int MP, int attack, int defence, int magicAttack, int magicDefence) {
+    public Character(String name, String job, int HP, int MP, int attack, int defence, int magicAttack, int magicDefence, int exp) {
         this.name = name;
         this.jobID = job;
         this.HP = HP;
@@ -30,6 +32,18 @@ class Character {
         this.defence = defence;
         this.magicAttack = magicAttack;
         this.magicDefence = magicDefence;
+        this.exp = exp;
+    }
+
+    public Character(String name, int HP, int MP, int attack, int defence, int magicAttack, int magicDefence, int exp) {
+        this.name = name;
+        this.HP = HP;
+        this.MP = MP;
+        this.attack = attack;
+        this.defence = defence;
+        this.magicAttack = magicAttack;
+        this.magicDefence = magicDefence;
+        this.exp = exp;
     }
 
     public void jobChange(String oldJob, String newJob) {
