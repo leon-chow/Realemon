@@ -13,19 +13,23 @@ public class Main {
         "of the following options! \n 1. New Game \n 2. Load Game" +
         "\n 3. Exit");
         
-        Scanner menuScanner = new Scanner(System.in);  // Create a Scanner object
+        // Main Menu Scanner
+        Scanner menuScanner = new Scanner(System.in); 
 
-        String choice = menuScanner.nextLine();  // Read user input
         while (true) {
-            // loading a character r
+            String choice = menuScanner.nextLine();  
+            // Create a new file
             if (Integer.parseInt(choice.trim()) == 1) {
                 Scanner newGameScanner = new Scanner(System.in);
                 System.out.println("Please enter your name (No more than 10 characters)");
                 String name = newGameScanner.nextLine();
+                // check to see if name is too long, TODO: change break with while loop
                 if (name.length() > 10) {
                     System.out.println("Name is too large! Try again!");
                     break;
                 }
+
+                // close scanner
                 System.out.println("Please enter the number for your starting job. \n Starting jobs: \n");
                 
                 // reading the jobs text file here and displaying it to the user
@@ -36,7 +40,6 @@ public class Main {
                       String data = jobsReader.nextLine();
                       System.out.println(data);
                     }
-                    jobsReader.close();
                 } catch (IOException e) {
                     System.out.println("An error has occured");
                 }
@@ -56,8 +59,8 @@ public class Main {
                         try {
                             String jobStats = statsReader.nextLine();
                             if(jobStats.contains("00" + job)) {
-                                FileWriter characterWriter = new FileWriter("Characters.txt", true);
-                                characterWriter.write(name + "\t \t \t"  + jobStats + "\t0\tPRO");
+                                FileWriter characterWriter = new FileWriter("Saves/" + name + ".txt", false);
+                                characterWriter.write(name + "\t \t \t" + jobStats + "\t0\tPRO");
                                 characterWriter.close();
                             }
                         } catch (IOException e) {
@@ -79,10 +82,11 @@ public class Main {
             } else if (Integer.parseInt(choice.trim()) == 3) {
                 System.out.println("Goodbye...");
                 System.exit(1);
-            } 
+            } else {
+                System.out.println("Error: Invalid number!");
+            }
+            System.out.println("Back to main menu: \n1. New Game\n2. Load Game\n3. Quit");
             // TODO: Add Try and Catch block after
-            System.out.println("Error: Invalid number!");
-            choice = menuScanner.nextLine();
         }
     }
 }

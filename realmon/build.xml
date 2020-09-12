@@ -3,6 +3,7 @@
         <delete file="Main.class"/>
         <delete file="Character.class"/>
         <delete file="Combat.class"/>
+        <delete file="Story.class"/>
     </target>
 
     <target name="compile">
