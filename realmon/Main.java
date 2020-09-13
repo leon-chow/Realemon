@@ -17,10 +17,10 @@ public class Main {
         Scanner menuScanner = new Scanner(System.in); 
 
         while (true) {
-            String choice = menuScanner.nextLine();  
+            int choice = menuScanner.nextInt();  
             
             // ***Option 1 - NEW GAME***    
-            if (Integer.parseInt(choice.trim()) == 1) {
+            if (choice == 1) {
                 Scanner newGameScanner = new Scanner(System.in);
                 System.out.println("Please enter your name (No more than 10 characters)");
                 String name = newGameScanner.nextLine();
@@ -94,14 +94,14 @@ public class Main {
                     System.out.println("Enemy: " + Arrays.toString(eStats));
 
                     // creating 2 character objects, 1 player and 1 enemy for combat
-                    Character player = new Character();
-                    Character enemy = new Character();
+                    Character player = new Character(name, pStats[0], Integer.parseInt(pStats[1]), Integer.parseInt(pStats[2]), Integer.parseInt(pStats[3]), Integer.parseInt(pStats[4]), Integer.parseInt(pStats[5]), Integer.parseInt(pStats[6]), Integer.parseInt(pStats[7]));
+                    Character enemy = new Character(eStats[0], Integer.parseInt(eStats[1]), Integer.parseInt(eStats[2]), Integer.parseInt(eStats[3]), Integer.parseInt(eStats[4]), Integer.parseInt(eStats[5]), Integer.parseInt(eStats[6]), Integer.parseInt(eStats[7]));
 
                     // combat start
                     combat.initiateCombat(story.getActName());
                     combat.setPlayer(name);
                     combat.setEnemy(story.getActName());
-                    combat.startCombat();
+                    combat.startCombat(player, enemy);
                 } catch (IOException e) {
                     System.out.println("File not found!");
                     e.printStackTrace();
@@ -114,7 +114,7 @@ public class Main {
                 // TODO: print the characters.txt file and take deleted file user input
                 System.out.println("Choose a file to delete.");*/
             // ***OPTION 4 - EXIT***
-            } else if (Integer.parseInt(choice.trim()) == 3) {
+            } else if (choice == 3) {
                 System.out.println("Thank you for playing!");
                 System.exit(1);
             } else {
