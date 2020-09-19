@@ -98,10 +98,7 @@ public class Main {
                     Character enemy = new Character(eStats[0], Integer.parseInt(eStats[1]), Integer.parseInt(eStats[2]), Integer.parseInt(eStats[3]), Integer.parseInt(eStats[4]), Integer.parseInt(eStats[5]), Integer.parseInt(eStats[6]), Integer.parseInt(eStats[7]));
 
                     // combat start
-                    combat.initiateCombat(story.getActName());
-                    combat.setPlayer(name);
-                    combat.setEnemy(story.getActName());
-                    combat.startCombat(player, enemy);
+                    combat.startCombat(player, enemy, "ACT 1");
                 } catch (IOException e) {
                     System.out.println("File not found!");
                     e.printStackTrace();

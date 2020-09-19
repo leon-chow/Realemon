@@ -3,22 +3,12 @@ package realmon;
 import java.util.*;
 
 class Combat {
-    public void initiateCombat(String act) {
-        System.out.println("Preparing for Battle " + act);
-    }
-
-    public void setPlayer(String name) {
-        System.out.println("Setting player...");
-        // TODO: Read file with character name
-    }
-
-    public void setEnemy(String currentAct) {
-        System.out.println("Setting enemy...");
-        // TODO: Read Enemy with Current Act 
-    }
-
-    public void heal(Character player, Character ememy) {
-        int damage = (int)((player.magicAttack + player.HP) * 0.1);
+    public void heal(Character player, int pMaxHP, int pMaxMP, Character ememy) {
+        int damage = (int)((player.magicAttack + pMaxHP) * 0.1);
+        // check if player is full HP, or prevents overhealing if player heals more than full HP
+        if (player.HP <= pMaxHP && (player.HP + damage) > pMaxHP) {
+            damage = pMaxHP - player.HP; 
+        }
         System.out.println("You heal for " + damage + " hitpoints!");
         player.HP += damage;
     }
@@ -54,11 +44,14 @@ class Combat {
         }
     }
 
-    public void startCombat(Character player, Character enemy) {
+    public void startCombat(Character player, Character enemy, String act) {
+        System.out.println("Preparing for Battle " + act);
         System.out.println("Starting combat...");
         int turnOrder = (int)(Math.random() * (2 - 1 + 1)) + 1; 
         int turnCounter = 1;
         int block = 0;
+        int pMaxHP = player.HP;
+        int pMaxMP = player.MP;
 
         while (player.HP > 0 && enemy.HP > 0) {      
             if (turnOrder == 1) {
@@ -66,7 +59,7 @@ class Combat {
                 System.out.println("Player HP: " + player.HP);
                 System.out.println(enemy.name + " HP: " + enemy.HP);
                 System.out.println("Player's turn! Enter a number for the corresponding action!");
-                System.out.println("\nPlayer's moves: \n1.Attack\n2.Defend\n3.Heal");
+                System.out.println("Player's moves: \n1.Attack\n2.Defend\n3.Heal");
                 
                 Scanner pScanner = new Scanner(System.in);
                 int choice = pScanner.nextInt();
@@ -81,7 +74,7 @@ class Combat {
                         block = 10;
                     } else if (choice == 3) {
                         // HEALING
-                        heal(player, enemy);
+                        heal(player, pMaxHP, pMaxMP, enemy);
                     }
                     turnOrder = 0;
                 } else {

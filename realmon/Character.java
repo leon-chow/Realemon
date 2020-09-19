@@ -49,4 +49,8 @@ class Character {
     public void jobChange(String oldJob, String newJob) {
         System.out.println("Congratulations, you successfully changed from " + oldJob + " to " + newJob);
     }
+
+    public void getActName(String name) {
+        // TODO: Get act name from the save file
+    }
 }
