@@ -1,1 +1,1 @@
-Angry Teacher,20,2,2,2,2,2,2
+Angry Teacher,2,20,2,2,2,2,2,2

@@ -1,1 +1,1 @@
-Disgruntled Student,60,6,6,6,6,6,6
+Disgruntled Student,6,60,6,6,6,6,6,6

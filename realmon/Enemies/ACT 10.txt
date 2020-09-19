@@ -1,1 +1,1 @@
-Final Boss Karen,100,10,10,10,10,10,10
+Final Boss Karen,10,100,10,10,10,10,10,10

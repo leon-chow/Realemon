@@ -2,9 +2,8 @@ package realmon;
 
 import java.util.*;
 import java.io.File;  // Import the File class
-import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.FileWriter;   // Import the FileWriter class
-import java.io.File;
+import java.io.IOException;  // Import the IOException class to handle errors
 
 public class Main {
     public static void main(String[] args) {
@@ -60,7 +59,7 @@ public class Main {
                             String jobStats = statsReader.nextLine();
                             if(jobStats.contains("00" + job)) {
                                 FileWriter characterWriter = new FileWriter("Saves/" + name + ".txt", false);
-                                characterWriter.write(jobStats + ",0,PRO");
+                                characterWriter.write(jobStats + ",0,ACT 1");
                                 characterWriter.close();
                             }
                         } catch (IOException e) {
@@ -75,36 +74,40 @@ public class Main {
                 }
             // initializing new objects
             Story story = new Story();
+            story.newGame();
             Combat combat = new Combat();
 
             // Running fight scripts
             while (story.getActName() != "END") {
                 try {
                     // player save file and stats
+                    // creating 2 character objects, 1 player and 1 enemy for combat
                     File saveFile = new File("Saves/" + name + ".txt");
                     Scanner pScanner = new Scanner(saveFile);
                     String[] pStats = pScanner.nextLine().split(",");
+                    Character player = new Character(name, pStats[0], Integer.parseInt(pStats[1]), Integer.parseInt(pStats[2]), Integer.parseInt(pStats[3]), Integer.parseInt(pStats[4]), Integer.parseInt(pStats[5]), Integer.parseInt(pStats[6]), Integer.parseInt(pStats[7]), Integer.parseInt(pStats[8]), pStats[9]);
+                    story.setActName(player.storyACT);
 
                     // enemy save file and stats
-                    File enemyFile = new File("Enemies/" + story.getActName() + ".txt");
+                    File enemyFile = new File("Enemies/" + player.storyACT + ".txt");
                     Scanner eScanner = new Scanner(enemyFile);
                     String[] eStats = eScanner.nextLine().split(",");
+                    Character enemy = new Character(eStats[0], Integer.parseInt(eStats[1]), Integer.parseInt(eStats[2]), Integer.parseInt(eStats[3]), Integer.parseInt(eStats[4]), Integer.parseInt(eStats[5]), Integer.parseInt(eStats[6]), Integer.parseInt(eStats[7]), Integer.parseInt(eStats[8]));
 
                     System.out.println("Player: " + Arrays.toString(pStats));
                     System.out.println("Enemy: " + Arrays.toString(eStats));
 
-                    // creating 2 character objects, 1 player and 1 enemy for combat
-                    Character player = new Character(name, pStats[0], Integer.parseInt(pStats[1]), Integer.parseInt(pStats[2]), Integer.parseInt(pStats[3]), Integer.parseInt(pStats[4]), Integer.parseInt(pStats[5]), Integer.parseInt(pStats[6]), Integer.parseInt(pStats[7]));
-                    Character enemy = new Character(eStats[0], Integer.parseInt(eStats[1]), Integer.parseInt(eStats[2]), Integer.parseInt(eStats[3]), Integer.parseInt(eStats[4]), Integer.parseInt(eStats[5]), Integer.parseInt(eStats[6]), Integer.parseInt(eStats[7]));
-
                     // combat start
-                    combat.startCombat(player, enemy, "ACT 1");
+                    combat.startCombat(player, enemy, player.storyACT);
                 } catch (IOException e) {
                     System.out.println("File not found!");
                     e.printStackTrace();
                     System.exit(1);
                 }
             }
+
+            System.out.println("Congratulations! You completed the game!!!");
+
 
             // ***Option 3 - DELETE A GAME***   
             /*} else if (Integer.parseInt(choice.trim()) == 3) {
