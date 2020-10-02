@@ -1,0 +1,2 @@
+MoveName, Modifier
+Cow stampede, 1.5

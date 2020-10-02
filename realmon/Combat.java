@@ -54,7 +54,7 @@ class Combat {
         if (damage < 0) {
             damage = 0;
         }
-        System.out.println("\n" + enemy.name + "'s turn.\n" + enemy.name + " deals " + damage + " damage!");
+        System.out.println("\n" + enemy.name + "'s turn.\n" + enemy.name + " deals " + damage + " damage to you!");
         player.HP -= damage;
     }
 
@@ -66,6 +66,10 @@ class Combat {
             System.out.println("You have died.");
             System.exit(1);
         }
+    }
+
+    public void useMove(Character player, Character enemy) {
+        System.out.println("Special Attack:");
     }
 
     public void accumulateEXP(Character player, Character enemy) {
@@ -93,12 +97,12 @@ class Combat {
                 System.out.println("Player HP: " + player.HP);
                 System.out.println(enemy.name + " HP: " + enemy.HP);
                 System.out.println("Player's turn! Enter a number for the corresponding action!");
-                System.out.println("Player's moves: \n1.Attack\n2.Defend\n3.Heal");
+                System.out.println("Player's moves: \n1.Attack\n2.Defend\n3.Heal\n4.Special Move");
                 
                 Scanner pScanner = new Scanner(System.in);
                 int choice = pScanner.nextInt();
                 
-                if (choice > 0 && choice < 4) {
+                if (choice > 0 && choice < 5) {
                     if (choice == 1) {
                         // ATTACK
                         attack(player, enemy);
@@ -109,6 +113,14 @@ class Combat {
                     } else if (choice == 3) {
                         // HEALING
                         heal(player, pMaxHP, pMaxMP, enemy);
+                    } else if (choice == 4) {
+                        int chance = (int)(Math.random() * (2 - 1 + 1)) + 1;
+                        if (chance == 1) {
+                            System.out.println("Success! Preparing to use special move!");
+                            useMove(player, enemy);
+                        } else {
+                            System.out.println("Failed! Your turn is skipped to recover");
+                        }
                     }
                     turnOrder = 0;
                 } else {
