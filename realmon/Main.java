@@ -10,7 +10,7 @@ public class Main {
         // Main menu options
         System.out.println("Welcome to Realmon! Please type in a number for one " + 
         "of the following options! \n 1. New Game \n 2. Load Game" +
-        "\n 3. Exit");
+        "\n 5. Exit");
         
         // Main Menu Scanner
         Scanner menuScanner = new Scanner(System.in); 
@@ -107,14 +107,15 @@ public class Main {
             }
 
             System.out.println("Congratulations! You completed the game!!!");
+            
+            // ***Option 3
 
-
-            // ***Option 3 - DELETE A GAME***   
+            // ***Option 4 - DELETE A GAME***   
             /*} else if (Integer.parseInt(choice.trim()) == 3) {
                 // TODO: print the characters.txt file and take deleted file user input
                 System.out.println("Choose a file to delete.");*/
-            // ***OPTION 4 - EXIT***
-            } else if (choice == 3) {
+            // ***OPTION 5 - EXIT***
+            } else if (choice == 5) {
                 System.out.println("Thank you for playing!");
                 System.exit(1);
             } else {
