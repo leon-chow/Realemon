@@ -3,8 +3,16 @@ package realmon;
 class Story {
     public String act; 
 
+    public void setActName(String act) {
+        this.act = act;
+    }
+
+    public void newGame() {
+        this.act = "ACT 1";
+    }
+
     public String getActName() {
-        return "ACT 1";
+        return act;
     }
 
     public void readStory(String act) {

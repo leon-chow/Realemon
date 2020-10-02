@@ -1,8 +1,34 @@
 package realmon;
 
 import java.util.*;
+import java.io.File;  // Import the File class
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
 
 class Combat {
+
+    public void save(Character player) {
+        try {
+            int currentAct = Integer.parseInt(player.storyACT.replaceAll("\\D+",""));
+            System.out.println("Saving game...");
+            FileWriter characterWriter = new FileWriter("Saves/" + player.name + ".txt", false);
+            if (currentAct >= 10) {
+                player.storyACT = "END";
+            } else {
+                player.storyACT = "ACT " + (currentAct + 1);
+            }
+    
+            characterWriter.write(player.jobID + "," + player.level + "," + player.HP + "," + player.MP 
+                + "," + player.attack + "," + player.defence + "," + player.magicAttack + "," + player.magicDefence + "," +
+                player.exp + "," + player.storyACT);
+            characterWriter.close();
+            System.out.println("Successfully saved game!"); 
+        } catch (IOException e) {
+            System.out.println("File not found!");
+            System.exit(1);
+        } 
+    }
+
     public void heal(Character player, int pMaxHP, int pMaxMP, Character ememy) {
         int damage = (int)((player.magicAttack + pMaxHP) * 0.1);
         // check if player is full HP, or prevents overhealing if player heals more than full HP
@@ -35,13 +61,21 @@ class Combat {
     public void statusCheck(Character player, Character enemy) {
         if (player.HP > 0 && enemy.HP <= 0) {
             System.out.println(enemy.name + " has fainted. ");
-            System.out.println("Victory Fanfare! Congratulations! You've earned " + enemy.exp + " EXP!");
-            player.exp += enemy.exp;
-            System.out.println("Your current EXP points are " + player.exp + "\n");
+            accumulateEXP(player, enemy);
         } else {
             System.out.println("You have died.");
             System.exit(1);
         }
+    }
+
+    public void accumulateEXP(Character player, Character enemy) {
+        System.out.println("Victory Fanfare! Congratulations! You've earned " + enemy.exp + " EXP!");
+        player.exp += enemy.exp;
+        System.out.println("Your current EXP points are " + player.exp + "\n");
+        if (player.exp >= (player.level * 100)) {
+            player.levelUp();
+        }
+        save(player);
     }
 
     public void startCombat(Character player, Character enemy, String act) {
