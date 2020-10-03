@@ -40,7 +40,6 @@ class Combat {
     }
 
     public void attack(Character player, Character enemy) {
-        // TODO: Handle Attack Calculations
         int damage = player.attack - enemy.defence;
         if (damage < 0) {
             damage = 0;
@@ -69,7 +68,24 @@ class Combat {
     }
 
     public void useMove(Character player, Character enemy) {
-        System.out.println("Special Attack:");
+        try {
+            File movesFile = new File("Moves/" + player.jobID + "/Moves.txt");
+            Scanner moveScanner = new Scanner(movesFile);
+            String[] moveData = moveScanner.nextLine().split(",");  
+            System.out.println("Special Attack: " + moveData[0]);
+            int damage = (int)(player.attack * Double.parseDouble(moveData[1]) - enemy.defence);
+            if (player.jobID == "008") {
+                damage = (int)(player.attack * ((Math.random()*1)+1) - enemy.defence);
+            } if (damage < 0) {
+                damage = 0;
+            }
+            System.out.println("You deal " + damage + " damage to " + enemy.name);
+            enemy.HP -= damage;
+        } catch (IOException e) {
+            System.out.println("File not found!");
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     public void accumulateEXP(Character player, Character enemy) {
