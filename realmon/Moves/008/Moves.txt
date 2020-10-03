@@ -1,2 +1,1 @@
-MoveName, Modifier
 Procrastinate, RANDOM

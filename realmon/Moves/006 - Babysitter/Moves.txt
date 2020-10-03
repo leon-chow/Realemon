@@ -1,2 +1,0 @@
-MoveName, Modifier
-Babysit, 1.2

@@ -1,2 +1,0 @@
-MoveName, Modifier
-Consume Burger, 1.5

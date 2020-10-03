@@ -1,2 +1,0 @@
-MoveName, Modifier
-Throw Money, 1.3
